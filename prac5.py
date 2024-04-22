@@ -2,17 +2,31 @@
 
 class Zoo:
     def __init__(self):
-        pass
+        self.animals = []
 
     def add_animal(self, animal):
-        pass
+        info = [animal.name, animal.species]
+        if info in self.animals:
+            print('{} the {}은 이미 동물원에 있습니다. 다른 이름을 사용하거나, 다른 종으로 추가해주세요.'.format(animal.name, animal.species))
+        else:
+            self.animals.append(info)
 
     def show_animals(self):
-        pass
+        print('현재 동물원에는 다음 동물들이 있습니다 :')
+        for k, v in self.animals:
+            print('{} the {}'.format(k, v))
+            
+    def show_animals_by_species(self, voc):
+        print('{} 종이 포함된 동물 :'.format(voc))
+        for k, v in self.animals:
+            if v == voc:
+                print('{} the {}'.format(k, v))
+        
 
 class Animal:
     def __init__(self, name, species):
-        pass
+        self.name = name
+        self.species = species
 
 def main():
     # 동물원을 선언하고 10마리의 동물들을 추가합니다.
@@ -30,6 +44,7 @@ def main():
 
     # 동물원에 있는 모든 동물을 출력합니다.
     zoo.show_animals()
+    print()
     ## 출력 결과 : 
     '''
     현재 동물원에는 다음 동물들이 있습니다 :
@@ -47,12 +62,14 @@ def main():
 
     # 특정 종에 해당하는 동물들의 이름만 출력합니다.
     zoo.show_animals_by_species("Lion")
+    print()
     # 출력 결과 : 
     '''
     - Leo the Lion
     - Terry the Lion
     '''
     zoo.show_animals_by_species("Elephant")
+    print()
     # 출력 결과 : 
     '''
     - Ella the Elephant
